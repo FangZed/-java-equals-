@@ -1,0 +1,50 @@
+一.关系操作符“==”
+在java中，“==”是关系操作符中的一个，它的作用是用来比较两个变量之间的值从而给出一个布尔值。即"=="的结果就是ture 或者 false。例如以下代码：
+class Test{
+ public static void main(String[] args){
+     int i = 2;
+     int j = 2;
+     System.out.println(i == j);
+     
+     /* output:
+        ture 
+     */
+ }
+}
+在此处“==”就是将变量i 和 变量j中的值本身进行了比较，从而得出相对应的布尔值。但是这种值本身的比较只能在8种基本类型（float,double,byte,int,short,long,char,boolean）中才能进行。
+对于其他引用类型的变量，如String，这个一般是新建一个对象，存储的不是值的本身，而是一个存储地址。“==”对于这些非基本类型变量的比较方法都是比较两个引用对象所指向的存储地址是否一致。例如：
+class Test{
+ public static void main(String[] args){
+      String str1 =  new String("hello,world");
+      String str2 =  new String("hello,world");
+      system.out.println(str1 == str2);
+      
+      /* output:
+         false
+      */   
+ }
+}
+可以看到str1,str2的初始值都是“hello,world”但是在打印出来时显示的语句却是"false"。明显可以看出“==”比较的并不是这两个变量的值，而是他们所指向的存储地址。
+
+二.Object中的equals方法
+“equals”也是一种比较的方法。对于继承于Object的类都有这个方法。在Object类中的equals方法如下（java.lang路径下的Object.java）：
+public boolean equals(Object anObject){
+        return(this == anObject);
+}
+显而易见，equals方法是在比较两个变量的引用是否一致，即为是否都指向同一个对象。
+我们来看个例子：
+class Test{
+public static void main(String[] args){
+      String str1 =  new String("hello,world");
+      String str2 =  new String("hello,world");
+      system.out.println(str1.equals(str2));
+      
+      /* output:
+         true
+      */   
+}
+此处也许会有疑问：为什么输出结果还是“true”？？？实际上在equals方法里还有String类重写equals方法的部分.用来比较指向的字符串对象所存储的字符串是否相等。
+
+总结：
+对于"=="：如果比较的是基本类型变量那么比较的是值本身；如果比较的是非基本类型变量那么比较的是引用对象所指向的内存地址。
+对于"equals"：不能用于基本类型的比较。它的比较方法是比较变量引用是否都指向同一个对象。在String类中，它比较的是两个变量指向的字符串对象所存储的字符串内容是否相等。
