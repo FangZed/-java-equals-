@@ -1,2 +1,1 @@
-# -java-equals-
-学习心得
+# 浅谈java中的"=="去equals方法的区别
